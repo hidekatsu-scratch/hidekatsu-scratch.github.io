@@ -1,1 +1,38 @@
+/* 全体リセット */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* ヘッダー */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  color: white;
+  padding: 10px 20px;
+}
+
+/* ロゴ */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* ナビゲーション */
+.nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* メイン */
+main {
+  padding: 20px;
+}
 
