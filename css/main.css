@@ -39,3 +39,22 @@
   padding-top: 64px;
   padding-bottom: 48px;
 }
+
+.error-page {
+  height: calc(100vh - var(--header-h) - var(--footer-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.error-page h1 {
+  font-size: 96px;
+  margin: 0;
+}
+
+.error-page p {
+  font-size: 18px;
+  color: #555;
+}
