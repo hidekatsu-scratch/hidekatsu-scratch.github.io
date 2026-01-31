@@ -59,3 +59,49 @@
   font-size: 18px;
   color: #555;
 }
+/* ===== お問い合わせ ===== */
+
+.contact-list {
+  max-width: 520px;
+  margin: 32px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 14px 18px;
+  border-radius: 12px;
+
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.contact-card img {
+  width: 36px;
+  height: 36px;
+}
+
+/* 個別カラー（自由に変更OK） */
+.contact-card.mail {
+  background: #555;
+}
+
+.contact-card.scratch {
+  background: #ff9f1c; /* Scratchっぽい色 */
+}
+
+.contact-card.discord {
+  background: #5865f2;
+}
+
+/* 押した感 */
+.contact-card:active {
+  transform: scale(0.98);
+}
