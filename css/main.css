@@ -41,7 +41,8 @@
 }
 
 .error-page {
-  height: calc(100vh - var(--header-h) - var(--footer-h));
+  height: calc(100vh - 56px);
+  margin-top: 64px;
   display: flex;
   flex-direction: column;
   justify-content: center;
