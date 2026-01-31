@@ -1,10 +1,14 @@
-function loadPart(id, url) {
+function loadPartInto(tag, url) {
   fetch(url)
     .then(res => res.text())
     .then(html => {
-      document.getElementById(id).innerHTML = html;
+      document.querySelector(tag).insertAdjacentHTML("beforeend", html);
     });
 }
 
-loadPart("header", "/parts/header.html");
-loadPart("footer", "/parts/footer.html");
+// head
+loadPartInto("head", "/parts/head.html");
+
+// header / footer
+loadPartInto("#header", "/parts/header.html");
+loadPartInto("#footer", "/parts/footer.html");
