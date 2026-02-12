@@ -35,7 +35,7 @@ async function sha256(text) {
     .map(b => b.toString(16).padStart(2, '0'))
     .join('');
 }
-const correctHash = "9f6e53dbf7a0ff4d89af0f9d3a6dfd1c8a5ccf0e03faad7d8579e6f45f8e5f6f";
+const correctHash = "5a9cb6b54ea56d52a69891af8c21afb73d3841611bbabb5d7c61312d81e6e041";
 
 async function check() {
   const input = document.getElementById("pw").value;
