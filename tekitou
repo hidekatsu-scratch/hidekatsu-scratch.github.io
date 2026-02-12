@@ -1,0 +1,23 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ahh_kusogee_da</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <iframe src="https://pixelclient.xyz"></iframe>
+
+</body>
+</html>
