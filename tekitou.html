@@ -28,31 +28,52 @@
 </div>
 
 <script>
-async function sha512(text) {
-  const buf = new TextEncoder().encode(text);
-  const hash = await crypto.subtle.digest('SHA-512', buf);
-  return new Uint8Array(hash); // 512bit = 64バイト
-}
+const encryptedData = "Y/nCNBiOWg9CYB23Nt9zR0Rea3vSyNWHq/ny8Xtk/JQrRGLrDnPZ";
+const saltBase64 = "B3XX25PSrrmFlyt5lLemwQ==";
+const ivBase64 = "d8rV5tbMf9r3WQId";
 
-// XOR復号
-function xorDecrypt(data, key) {
-  const result = new Uint8Array(data.length);
-  for (let i = 0; i < data.length; i++) {
-    result[i] = data[i] ^ key[i % key.length];
-  }
-  return new TextDecoder().decode(result);
-}
+async function deriveKey(password, salt) {
+  const enc = new TextEncoder();
 
-const encryptedBase64 = "OhS1z+fHkRWUgLHjxnEvK0Cn08DYBtLy";
+  const keyMaterial = await crypto.subtle.importKey(
+    "raw",
+    enc.encode(password),
+    { name: "PBKDF2" },
+    false,
+    ["deriveKey"]
+  );
+
+  return crypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt: salt,
+      iterations: 100000,
+      hash: "SHA-512"
+    },
+    keyMaterial,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["decrypt"]
+  );
+}
 
 async function check() {
-  const input = document.getElementById("pw").value;
-
-  const key = await sha512(input);
+  const password = document.getElementById("pw").value;
 
   try {
-    const encrypted = Uint8Array.from(atob(encryptedBase64), c => c.charCodeAt(0));
-    const url = xorDecrypt(encrypted, key);
+    const salt = Uint8Array.from(atob(saltBase64), c => c.charCodeAt(0));
+    const iv = Uint8Array.from(atob(ivBase64), c => c.charCodeAt(0));
+    const encrypted = Uint8Array.from(atob(encryptedData), c => c.charCodeAt(0));
+
+    const key = await deriveKey(password, salt);
+
+    const decrypted = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: iv },
+      key,
+      encrypted
+    );
+
+    const url = new TextDecoder().decode(decrypted);
 
     if (!url.startsWith("http")) throw "error";
 
