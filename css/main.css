@@ -38,6 +38,7 @@ body {
 .content {
   padding-top: 64px;
   padding-bottom: 48px;
+  margin-left: 20px
 }
 
 .error-page {
